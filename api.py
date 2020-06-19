@@ -1,17 +1,17 @@
 from flask import Flask, request
 import config
 
-from db import User
+from db import Data
 
 
 app = Flask("API")
 
-users = User(config.data_path)
+users = Data(config.data_path)
 
 
-@app.route("/user/<ids>")
-def get_users_by_ids(ids):
-    data = users.get_users_by_ids(ids)
+@app.route("/user/<id>")
+def get_user_by_id(id):
+    data = users.get_by_id(id)
     return data
 
 
@@ -24,21 +24,13 @@ def get_users():
 @app.route("/user", methods=["POST"])
 def add_user():
     data = request.get_json()
-    result = users.add_user(data)
+    result = users.add(data)
     users.sync()
     return result
 
 
 @app.route("/user/<id>", methods=["PATCH"])
 def edit_user(id):
-    data = request.get_json()
-    result = users.update(id, data)
-    users.sync()
-    return result
-
-
-@app.route("/user/<id>", methods=["PUT"])
-def change_user(id):
     data = request.get_json()
     result = users.update(id, data)
     users.sync()

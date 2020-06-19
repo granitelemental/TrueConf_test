@@ -2,10 +2,9 @@ import json
 import os
 import uuid
 
-class User():
+class Data():
     def __init__(self, path):
         self.file_path = path
-        self.last_id = None
 
         if not os.path.exists(self.file_path):
             with open(self.file_path, "w") as f:
@@ -15,9 +14,8 @@ class User():
             with open(path, "r") as f:
                 self.data = json.load(f)
 
-    def get_users_by_ids(self, ids):
-        ids = ids.split(",")
-        return {id: self.data.get(id, None) for id in ids}
+    def get_by_id(self, id):
+        return self.data.get(id, None)
 
     def update(self, id, data):
         if id in self.data:
@@ -26,7 +24,7 @@ class User():
         else:
             return {"result": f"there is no user id {id} in the database"}
 
-    def add_user(self, data):
+    def add(self, data):
         id = str(uuid.uuid4())
         data["id"] = id
         self.data.update({id: data})
