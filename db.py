@@ -2,6 +2,8 @@ import json
 import os
 import uuid
 
+from werkzeug.exceptions import BadRequest
+
 
 class Data():
     def __init__(self, path):
@@ -16,27 +18,29 @@ class Data():
                 self.data = json.load(f)
 
     def get_by_id(self, id):
-        return self.data.get(id, None)
+        if id not in self.data:
+            raise BadRequest(f"there is no user id {id} in the database")
+        return self.data.get(id)
 
     def update(self, id, data):
-        if id in self.data:
-            self.data[id].update(data)
-            return self.data[id]
-        else:
-            return {"result": f"there is no user id {id} in the database"}
+        if id not in self.data:
+            raise BadRequest(f"there is no user id {id} in the database")
+        self.data[id].update(data)
+        return self.data[id]
 
     def add(self, data):
+        if "name" not in data:
+            raise BadRequest(f"there is no field 'name' in the data")
         id = str(uuid.uuid4())
         data["id"] = id
         self.data.update({id: data})
         return data
 
     def delete(self, id):
-        if id in self.data:
-            del(self.data[id])
-            return {"result": f"user id {id} was deleted"}
-        else:
-            return {"result": f"there is no user id {id} in the database"}
+        if id not in self.data:
+            raise BadRequest(f"there is no user id {id} in the database")
+        del(self.data[id])
+        return {"result": f"user id {id} was deleted"}
 
     def sync(self):
         with open(self.file_path, "w") as f:
