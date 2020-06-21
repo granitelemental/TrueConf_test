@@ -83,3 +83,6 @@ In case of other errors api returns:
         "error": <Exception>
     }
 ```
+
+#### Преимущества выбранного мною фрэймворка (Flask): 
+- по сравнению с Django Flask проще в освоении и использовании
