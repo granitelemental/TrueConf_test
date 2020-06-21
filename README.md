@@ -26,7 +26,7 @@ Response example:
    {
         "age": 21,
         "id": "639cd882-0906-447f-b4f1-675c10d20bcd",
-        "name": "New_name"
+        "name": "Name1"
     }
 ```
 
@@ -37,7 +37,7 @@ Response example:
         "639cd882-0906-447f-b4f1-675c10d20bcd": {
             "age": 21,
             "id": "639cd882-0906-447f-b4f1-675c10d20bcd",
-            "name": "New_name"
+            "name": "Name1"
         },
         "d2c264a9-4e25-4033-b46d-7b2982cf1f81": {
             "age": 21,
@@ -51,14 +51,14 @@ Response example:
 Data example:
 
     { 
-        "age": 25
+        "name": "New_name"
     }
 
 Response example:
     {
         "age": 25,
         "id": "a393e734-e59c-46db-b790-1f58e714cf14",
-        "name": "Name"
+        "name": "New_name"
     }
 ```
 If id is not in the database api returns:
