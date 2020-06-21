@@ -1,8 +1,8 @@
 ### Usage
 
-1) ### `pip install -r requirements.txt`
-2) ### `python api.py`
-3) ### Requests to api
+1) `pip install -r requirements.txt`
+2) `python api.py`
+3)  Requests to api
 
 - `POST /user` - add new user to the database.
 ```
@@ -69,7 +69,7 @@ Response example:
         "result": "user id a393e734-e59c-46db-b790-1f58e714cf14 was deleted"
     }
 ```
-4) ###  Errors
+4) Errors
 
 If id is not in the database api returns:
 ```
