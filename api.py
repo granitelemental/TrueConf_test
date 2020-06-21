@@ -3,9 +3,7 @@ import config
 
 from db import Data
 
-
 app = Flask("API")
-
 users = Data(config.data_path)
 
 
@@ -43,4 +41,4 @@ def delete_user(id):
     return result
 
 
-app.run(host=config.host, port=config.port , debug=True)
+app.run(host=config.host, port=config.port, debug=True)

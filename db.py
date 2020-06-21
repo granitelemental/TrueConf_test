@@ -2,6 +2,7 @@ import json
 import os
 import uuid
 
+
 class Data():
     def __init__(self, path):
         self.file_path = path
